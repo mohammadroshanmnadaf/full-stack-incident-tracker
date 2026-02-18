@@ -1,0 +1,10 @@
+backend/.env
+backend/venv/
+backend/__pycache__/
+backend/app/__pycache__/
+backend/app/routes/__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,58 @@
+:root {
+  --sev1: #dc3545; --sev2: #fd7e14; --sev3: #ffc107; --sev4: #198754;
+}
+body { background: #f4f6f9; font-family: 'Segoe UI', system-ui, sans-serif; }
+.navbar-brand { font-weight: 700; letter-spacing: .5px; }
+
+/* Severity badges */
+.badge-sev1 { background-color: var(--sev1) !important; }
+.badge-sev2 { background-color: var(--sev2) !important; color:#fff; }
+.badge-sev3 { background-color: var(--sev3) !important; color:#212529; }
+.badge-sev4 { background-color: var(--sev4) !important; }
+
+/* Status badges */
+.badge-open      { background-color: #dc3545 !important; }
+.badge-mitigated { background-color: #fd7e14 !important; color:#fff; }
+.badge-resolved  { background-color: #198754 !important; }
+
+/* Table */
+.table th {
+  font-weight:600; font-size:.82rem; text-transform:uppercase;
+  letter-spacing:.5px; color:#6c757d; background:#f8f9fa;
+  border-bottom:2px solid #dee2e6; white-space:nowrap;
+}
+.table tbody tr { cursor:pointer; transition:background .12s; }
+.table tbody tr:hover { background:#e8f4fd; }
+
+th.sortable { cursor:pointer; user-select:none; }
+th.sortable:hover { color:#0d6efd; }
+th.sort-active { color:#0d6efd; }
+.sort-icon { font-size:.72rem; margin-left:3px; opacity:.5; }
+th.sort-active .sort-icon { opacity:1; }
+
+/* Pagination */
+.pagination .page-link { color:#0d6efd; border-radius:6px; margin:0 2px; }
+.pagination .page-item.active .page-link { background:#0d6efd; border-color:#0d6efd; }
+
+/* Cards */
+.detail-card { border:none; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.08); }
+.form-card   { border:none; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.08); }
+.detail-label { font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.5px; color:#6c757d; margin-bottom:3px; }
+
+/* Loading overlay */
+#loadingOverlay {
+  display:none; position:fixed; inset:0;
+  background:rgba(255,255,255,.72); z-index:1000;
+  align-items:center; justify-content:center;
+}
+
+/* Empty state */
+.empty-state { text-align:center; padding:60px 20px; color:#6c757d; }
+.empty-state span { font-size:3rem; display:block; margin-bottom:12px; }
+
+/* Required star */
+.required-star::after { content:' *'; color:#dc3545; }
+
+.toast-container { z-index:9999; }
+
+@media(max-width:768px) { .table-responsive { font-size:.85rem; } }

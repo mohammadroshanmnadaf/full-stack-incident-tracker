@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Incident Detail — Incident Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">🚨 Incident Tracker</a>
+    <div class="ms-auto">
+      <a href="index.html" class="btn btn-outline-light btn-sm">← Back to List</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4" style="max-width:860px;">
+
+  <!-- Loading -->
+  <div id="loadingState" class="text-center py-5">
+    <div class="spinner-border text-primary mb-3" style="width:3rem;height:3rem;"></div>
+    <p class="text-muted">Loading incident…</p>
+  </div>
+
+  <!-- Error -->
+  <div id="errorState" style="display:none;">
+    <div class="alert alert-danger"><strong>Error:</strong> <span id="errorMessage"></span></div>
+    <a href="index.html" class="btn btn-outline-secondary">← Back to List</a>
+  </div>
+
+  <!-- Content -->
+  <div id="incidentContent" style="display:none;">
+
+    <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+      <div>
+        <span class="text-muted small" id="incidentId"></span>
+        <h1 class="h4 fw-bold mb-0" id="incidentTitle"></h1>
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <span id="incidentSeverity"></span>
+        <span id="incidentStatus"></span>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <!-- Details -->
+      <div class="col-md-8">
+        <div class="card detail-card p-4 h-100">
+          <div class="mb-4">
+            <div class="detail-label">Summary</div>
+            <div id="incidentSummary" style="white-space:pre-wrap; line-height:1.6;"></div>
+          </div>
+          <hr/>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="detail-label">Service</div>
+              <div class="fw-semibold" id="incidentService"></div>
+            </div>
+            <div class="col-sm-6">
+              <div class="detail-label">Owner</div>
+              <div id="incidentOwner"></div>
+            </div>
+            <div class="col-sm-6">
+              <div class="detail-label">Created</div>
+              <div class="small text-muted" id="incidentCreated"></div>
+            </div>
+            <div class="col-sm-6">
+              <div class="detail-label">Last Updated</div>
+              <div class="small text-muted" id="incidentUpdated"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update form -->
+      <div class="col-md-4">
+        <div class="card detail-card p-4">
+          <h6 class="fw-bold mb-3">Update Incident</h6>
+          <form id="updateForm">
+            <div class="mb-3">
+              <label for="updateStatus" class="detail-label d-block">Status</label>
+              <select id="updateStatus" name="updateStatus" class="form-select form-select-sm">
+                <option value="OPEN">Open</option>
+                <option value="MITIGATED">Mitigated</option>
+                <option value="RESOLVED">Resolved</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="updateSeverity" class="detail-label d-block">Severity</label>
+              <select id="updateSeverity" name="updateSeverity" class="form-select form-select-sm">
+                <option value="SEV1">SEV1 — Critical</option>
+                <option value="SEV2">SEV2 — High</option>
+                <option value="SEV3">SEV3 — Medium</option>
+                <option value="SEV4">SEV4 — Low</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="updateOwner" class="detail-label d-block">Owner</label>
+              <input type="text" id="updateOwner" name="updateOwner"
+                class="form-control form-control-sm" placeholder="team or email" maxlength="100"/>
+            </div>
+            <button type="submit" id="updateBtn" class="btn btn-primary w-100 btn-sm">
+              Save Changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/detail.js"></script>
+</body>
+</html>

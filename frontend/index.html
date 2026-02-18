@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Incident Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="loadingOverlay">
+  <div class="text-center">
+    <div class="spinner-border text-primary mb-2" style="width:3rem;height:3rem;"></div>
+    <div class="text-muted fw-semibold">Loading…</div>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">🚨 Incident Tracker</a>
+    <div class="ms-auto">
+      <a href="create.html" class="btn btn-danger btn-sm">+ New Incident</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div id="alertContainer"></div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <div>
+      <h1 class="h4 fw-bold mb-0">Production Incidents</h1>
+      <small id="totalCount" class="text-muted">Loading…</small>
+    </div>
+    <a href="create.html" class="btn btn-danger">+ New Incident</a>
+  </div>
+
+  <!-- Filters -->
+  <div class="card mb-3 border-0 shadow-sm">
+    <div class="card-body py-2">
+      <div class="row g-2 align-items-center">
+        <div class="col-12 col-md-4">
+          <input type="search" id="searchInput" class="form-control" placeholder="🔍 Search title or service…"/>
+        </div>
+        <div class="col-6 col-md-2">
+          <select id="severityFilter" class="form-select">
+            <option value="">All Severities</option>
+            <option value="SEV1">SEV1 — Critical</option>
+            <option value="SEV2">SEV2 — High</option>
+            <option value="SEV3">SEV3 — Medium</option>
+            <option value="SEV4">SEV4 — Low</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <select id="statusFilter" class="form-select">
+            <option value="">All Statuses</option>
+            <option value="OPEN">Open</option>
+            <option value="MITIGATED">Mitigated</option>
+            <option value="RESOLVED">Resolved</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <select id="limitSelect" class="form-select">
+            <option value="10">10 / page</option>
+            <option value="20" selected>20 / page</option>
+            <option value="50">50 / page</option>
+            <option value="100">100 / page</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th style="width:60px">ID</th>
+            <th class="sortable" data-col="title">Title / Service <span class="sort-icon">⇅</span></th>
+            <th class="sortable" data-col="severity">Severity <span class="sort-icon">⇅</span></th>
+            <th class="sortable" data-col="status">Status <span class="sort-icon">⇅</span></th>
+            <th>Owner</th>
+            <th class="sortable" data-col="created_at">Created <span class="sort-icon">↓</span></th>
+            <th style="width:80px"></th>
+          </tr>
+        </thead>
+        <tbody id="incidentTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <nav class="mt-3 d-flex justify-content-center">
+    <ul id="pagination" class="pagination flex-wrap"></ul>
+  </nav>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
